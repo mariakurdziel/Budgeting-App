@@ -15,7 +15,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent myIntent = new Intent(view.getContext(), FoodDetailsActivity.class);
+                    Intent myIntent = new Intent(view.getContext(), DetailsActivity.class);
+                    myIntent.putExtra("value1", mTitle[position]);
                     startActivity(myIntent);
             }
         });
