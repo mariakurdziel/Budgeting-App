@@ -27,14 +27,14 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.detailsview);
 
         etExpense = (EditText) findViewById(R.id.etExpense);
-        etChangeBudget = (EditText)findViewById(R.id.etChangeBudget);
-        etCategory =(EditText) findViewById(R.id.etCategory);
+        etChangeBudget = (EditText) findViewById(R.id.etChangeBudget);
+        etCategory = (EditText) findViewById(R.id.etCategory);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
-        btnChange =  (Button) findViewById(R.id.btnChange);
-        btnShow =  (Button) findViewById(R.id.btnShow);
+        btnChange = (Button) findViewById(R.id.btnChange);
+        btnShow = (Button) findViewById(R.id.btnShow);
 
-        tvBudget = (TextView)findViewById(R.id.tvBudget);
+        tvBudget = (TextView) findViewById(R.id.tvBudget);
         tvMoneyLeft = (TextView) findViewById(R.id.tvMoneyLeft);
 
 
@@ -44,6 +44,23 @@ public class DetailsActivity extends AppCompatActivity {
         String savedExtra = getIntent().getStringExtra("value1");
         TextView myText = (TextView) findViewById(R.id.titleID);
         myText.setText(savedExtra);
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    btnAdd(v);
+            }
+        });
+
+
+        btnShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnShow(v);
+            }
+        });
+
+
     }
 
     public void btnAdd(View v) {
@@ -64,7 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
-    public void BtnShow(View v) {
+    public void btnShow(View v) {
         startActivity(new Intent(this, Data.class));
     }
 
@@ -79,6 +96,6 @@ public class DetailsActivity extends AppCompatActivity {
         } catch (SQLException) {
             Toast.makeText(DetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }*/
-    }
+}
 
 

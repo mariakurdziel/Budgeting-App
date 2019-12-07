@@ -11,7 +11,7 @@ public class ExpenseDB {
 
     public static final String KEY_ROWID = "_id";
     public static final String KEY_EXPENSE = "expense";
-    public static final String KEY_CATEGORY = "category";
+    public static final String KEY_CAT = "category";
 
     public static final String DATABASE_NAME = "ExpenseDB";
     public static final String DATABASE_TABLE = "AllExpense";
@@ -38,8 +38,9 @@ public class ExpenseDB {
 
             String query = "CREATE TABLE " + DATABASE_TABLE + " (" +
                     KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    KEY_EXPENSE+ " TEXT NOT NULL, " +
-                    KEY_CATEGORY+ " TEXT NOT NULL);";
+                    KEY_EXPENSE + " TEXT, " +
+                    KEY_CAT + " TEXT " +
+                    ");";
 
             db.execSQL(query);
 
@@ -64,13 +65,13 @@ public class ExpenseDB {
 
     public long createEntry(String expense, String category) {
         ContentValues values = new ContentValues();
-        values.put("KEY_CATEGORY", category);
+        values.put("KEY_CAT", category);
         values.put("KEY_EXPENSE", expense);
         return ourDatabase.insert(DATABASE_TABLE, null, values);
     }
 
     public String getData() {
-        String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CATEGORY};
+        String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT};
 
 
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
@@ -79,7 +80,7 @@ public class ExpenseDB {
 
         int iRowID = c.getColumnIndex(KEY_ROWID);
         int iExpense = c.getColumnIndex(KEY_EXPENSE);
-        int iCategory = c.getColumnIndex(KEY_CATEGORY);
+        int iCategory = c.getColumnIndex(KEY_CAT);
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             result = result + c.getString(iRowID) + ": " + c.getString(iExpense) + ": " + c.getString(iCategory) + "\n";
@@ -95,7 +96,7 @@ public class ExpenseDB {
     public long updateEntry(String rowId, String expense, String category) {
         ContentValues cv = new ContentValues();
         cv.put(KEY_EXPENSE,expense);
-        cv.put(KEY_CATEGORY, category);
+        cv.put(KEY_CAT,category);
 
         return ourDatabase.update(DATABASE_TABLE,cv,KEY_ROWID+ "=?", new String[]{rowId});
     }
