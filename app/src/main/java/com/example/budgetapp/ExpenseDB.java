@@ -12,6 +12,7 @@ public class ExpenseDB {
     public static final String KEY_ROWID = "_id";
     public static final String KEY_EXPENSE = "expense";
     public static final String KEY_CAT = "category";
+    public static final String KEY_DESC = "description";
 
     public static final String DATABASE_NAME = "ExpenseDB";
     public static final String DATABASE_TABLE = "AllExpense";
@@ -39,7 +40,8 @@ public class ExpenseDB {
             String query = "CREATE TABLE " + DATABASE_TABLE + " (" +
                     KEY_ROWID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     KEY_EXPENSE + " TEXT, " +
-                    KEY_CAT + " TEXT " +
+                    KEY_CAT + " TEXT, " +
+                    KEY_DESC + " TEXT " +
                     ");";
 
             db.execSQL(query);
@@ -63,15 +65,16 @@ public class ExpenseDB {
         ourHelper.close();
     }
 
-    public long createEntry(String expense, String category) {
+    public long createEntry(String expense, String category, String desc) {
         ContentValues values = new ContentValues();
-        values.put("KEY_CAT", category);
-        values.put("KEY_EXPENSE", expense);
+        values.put(KEY_CAT, category);
+        values.put(KEY_DESC, desc);
+        values.put(KEY_EXPENSE, expense);
         return ourDatabase.insert(DATABASE_TABLE, null, values);
     }
 
     public String getData() {
-        String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT};
+        String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT, KEY_DESC};
 
 
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
@@ -81,9 +84,10 @@ public class ExpenseDB {
         int iRowID = c.getColumnIndex(KEY_ROWID);
         int iExpense = c.getColumnIndex(KEY_EXPENSE);
         int iCategory = c.getColumnIndex(KEY_CAT);
+        int iDescription = c.getColumnIndex(KEY_DESC);
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            result = result + c.getString(iRowID) + ": " + c.getString(iExpense) + ": " + c.getString(iCategory) + "\n";
+            result = result + c.getString(iRowID) + ": " + c.getString(iExpense) + ": " + c.getString(iCategory) + ": " + c.getString(iDescription) + "\n";
         }
         c.close();
         return result;

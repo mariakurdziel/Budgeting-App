@@ -44,7 +44,13 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent myIntent = new Intent(view.getContext(), DetailsActivity.class);
+                    Intent myIntent;
+                    if(mTitle[position].toString()==" Stats"){
+                        myIntent = new Intent(view.getContext(), StatsActivity.class);
+                    }
+                    else{
+                        myIntent = new Intent(view.getContext(), DetailsActivity.class);
+                    }
                     myIntent.putExtra("value1", mTitle[position]);
                     startActivity(myIntent);
             }

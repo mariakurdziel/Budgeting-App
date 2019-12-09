@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class DetailsActivity extends AppCompatActivity {
 
 
-    EditText etExpense, etChangeBudget, etCategory;
+    EditText etExpense, etChangeBudget, etCategory, etDescription;
 
     Button btnAdd, btnChange, btnShow;
 
@@ -28,7 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
 
         etExpense = (EditText) findViewById(R.id.etExpense);
         etChangeBudget = (EditText) findViewById(R.id.etChangeBudget);
-        etCategory = (EditText) findViewById(R.id.etCategory);
+        etDescription = (EditText) findViewById(R.id.etDescription);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnChange = (Button) findViewById(R.id.btnChange);
@@ -61,20 +61,31 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
+        btnChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnChange(v);
+            }
+        });
+
+
     }
 
     public void btnAdd(View v) {
         String expense = etExpense.getText().toString().trim();
-        String category = etCategory.getText().toString().trim();
+        //String category = etCategory.getText().toString().trim();
+        String savedExtra = getIntent().getStringExtra("value1");
+        String category = savedExtra.trim();
+        String desc = etDescription.getText().toString().trim();
 
         try {
             ExpenseDB db = new ExpenseDB(this);
             db.open();
-            db.createEntry(expense, category);
+            db.createEntry(expense, category, desc);
             db.close();
             Toast.makeText(DetailsActivity.this, "Successfully saved!", Toast.LENGTH_SHORT).show();
             etExpense.setText("");
-            etCategory.setText("");
+            etDescription.setText("");
         } catch (SQLException e) {
             Toast.makeText(DetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
         }
@@ -84,6 +95,24 @@ public class DetailsActivity extends AppCompatActivity {
     public void btnShow(View v) {
         startActivity(new Intent(this, Data.class));
     }
+
+    public void btnChange(View v) {
+        String expense = etChangeBudget.getText().toString().trim();
+        String category = "Budget";
+
+        try {
+            ExpenseDB db = new ExpenseDB(this);
+            db.open();
+            db.createEntry(expense, category, null);
+            db.close();
+            Toast.makeText(DetailsActivity.this, "Successfully saved!", Toast.LENGTH_SHORT).show();
+            etChangeBudget.setText("");
+        } catch (SQLException e) {
+            Toast.makeText(DetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 
     /*public void setBtnEdit(View v) {
         try {

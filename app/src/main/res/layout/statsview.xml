@@ -72,62 +72,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etExpense"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="expense"
-            android:inputType="textPersonName" />
-
-        <EditText
-            android:id="@+id/etDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="description"
-            android:inputType="textPersonName" />
-
-        <Button
-            android:id="@+id/btnAdd"
-            android:layout_width="133dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Add Expense" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/etChangeBudget"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:hint="change budget"
-            android:inputType="number" />
-
-        <Button
-            android:id="@+id/btnChange"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Change budget" />
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btnShow"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Show all expenses" />
+        android:orientation="horizontal"/>
 
 </LinearLayout>
