@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
-    String mTitle[] = {" Food", " Bills", " Clothes", " Others", " Stats"};
+    String mTitle[] = {"Food", "Bills", "Clothes", "Others", "Stats"};
     String mDescription[] = {" Manage your food expenses", " Manage your bills expenses", " Manage your clothes expenses", " Manage your other expenses", " Check your monthly stats"};
     int images[] = {R.drawable.food, R.drawable.bills, R.drawable.clothes, R.drawable.others, R.drawable.stats};
     // so our images and other things are set in array

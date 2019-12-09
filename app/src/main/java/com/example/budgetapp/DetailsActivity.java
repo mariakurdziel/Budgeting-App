@@ -93,7 +93,13 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void btnShow(View v) {
-        startActivity(new Intent(this, Data.class));
+        Intent myIntent;
+        myIntent=(new Intent(v.getContext(), Data.class));
+        String savedExtra = getIntent().getStringExtra("value1");
+        myIntent.putExtra("value1",savedExtra);
+        startActivity(myIntent);
+
+
     }
 
     public void btnChange(View v) {

@@ -85,12 +85,24 @@ public class ExpenseDB {
         return ourDatabase.insert(DATABASE_TABLE, null, values);
     }
 
-    public String getData() {
-        String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT, KEY_DESC, KEY_IS_BUDGET};
+    public String getData(String cat) {
 
 
-        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);
+      /* String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT, KEY_DESC, KEY_IS_BUDGET};
 
+
+        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);*/
+
+        String table = "AllExpense";
+        String[] columns = new String[]{KEY_EXPENSE, KEY_CAT, KEY_DESC};
+        String selection = "category=?";
+        String[] selectionArgs = {cat};
+        String groupBy = null;
+        String having = null;
+        String orderBy = null;
+        String limit = null;
+
+        Cursor c = ourDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
         String result = "";
 
         int iRowID = c.getColumnIndex(KEY_ROWID);
@@ -101,11 +113,14 @@ public class ExpenseDB {
 
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            result = result + c.getString(iRowID) + ": " + c.getString(iExpense) + ": " + c.getString(iCategory) + ": " + c.getString(iDescription) + ": " + c.getString(iIsBudget) + "\n";
+            result = result + c.getString(iExpense) + ": " + c.getString(iCategory) + ": " + c.getString(iDescription) + "\n";
         }
         c.close();
         return result;
+
     }
+
+
 
     public long deleteEntry(String rowId) {
         return ourDatabase.delete(DATABASE_TABLE, KEY_ROWID + "=?", new String[]{rowId});
@@ -113,16 +128,16 @@ public class ExpenseDB {
 
     public long updateBudget(String category, double expense) {
         ContentValues cv = new ContentValues();
-        cv.put(KEY_EXPENSE,expense);
+        cv.put(KEY_EXPENSE, expense);
 
-        return ourDatabase.update(DATABASE_TABLE,cv,KEY_IS_BUDGET + "=? and " + KEY_CAT + "=?", new String[]{"true", category});
+        return ourDatabase.update(DATABASE_TABLE, cv, KEY_IS_BUDGET + "=? and " + KEY_CAT + "=?", new String[]{"true", category});
     }
 
     public long updateEntry(String rowId, String expense, String category) {
         ContentValues cv = new ContentValues();
-        cv.put(KEY_EXPENSE,expense);
-        cv.put(KEY_CAT,category);
+        cv.put(KEY_EXPENSE, expense);
+        cv.put(KEY_CAT, category);
 
-        return ourDatabase.update(DATABASE_TABLE,cv,KEY_ROWID+ "=?", new String[]{rowId});
+        return ourDatabase.update(DATABASE_TABLE, cv, KEY_ROWID + "=?", new String[]{rowId});
     }
 }

@@ -17,12 +17,12 @@ TextView tvData;
         setContentView(R.layout.activity_data);
 
         tvData= (TextView) findViewById(R.id.tvData);
-
+        String savedExtra = getIntent().getStringExtra("value1");
         try{
 
             ExpenseDB db=new ExpenseDB(this);
             db.open();
-            tvData.setText(db.getData());
+            tvData.setText(db.getData(savedExtra));
             db.close();
 
         }catch(SQLException e){
