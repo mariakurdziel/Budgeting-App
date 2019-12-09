@@ -23,6 +23,10 @@ public class ExpenseDB {
     private Context ourContext;
     private SQLiteDatabase ourDatabase;
 
+    public SQLiteDatabase getOurDatabase() {
+        return ourDatabase;
+    }
+
     public ExpenseDB(Context context) {
         ourContext = context;
     }
@@ -43,18 +47,18 @@ public class ExpenseDB {
                     KEY_EXPENSE + " NUMERIC(9,2), " +
                     KEY_CAT + " TEXT, " +
                     KEY_DESC + " TEXT, " +
-                    KEY_IS_BUDGET + " BOOLEAN " +
+                    KEY_IS_BUDGET + " INTEGER " +
                     ");";
 
             db.execSQL(query);
             db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
-                    "VALUES ('0', 'Food', 'true'); ");
+                    "VALUES ('0', 'Food', '1'); ");
             db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
-                    "VALUES ('0', 'Bills', 'true'); ");
+                    "VALUES ('0', 'Bills', '1'); ");
             db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
-                    "VALUES ('0', 'Clothes', 'true'); ");
+                    "VALUES ('0', 'Clothes', '1'); ");
             db.execSQL("INSERT INTO " + DATABASE_TABLE + " (expense, category, is_budget)" +
-                    "VALUES ('0', 'Others', 'true'); ");
+                    "VALUES ('0', 'Others', '1'); ");
 
 
         }
@@ -76,7 +80,7 @@ public class ExpenseDB {
         ourHelper.close();
     }
 
-    public long createEntry(double expense, String category, String desc, boolean isBudget) {
+    public long createEntry(double expense, String category, String desc, int isBudget) {
         ContentValues values = new ContentValues();
         values.put(KEY_CAT, category);
         values.put(KEY_DESC, desc);
@@ -130,7 +134,7 @@ public class ExpenseDB {
         ContentValues cv = new ContentValues();
         cv.put(KEY_EXPENSE, expense);
 
-        return ourDatabase.update(DATABASE_TABLE, cv, KEY_IS_BUDGET + "=? and " + KEY_CAT + "=?", new String[]{"true", category});
+        return ourDatabase.update(DATABASE_TABLE, cv, KEY_IS_BUDGET + "=? and " + KEY_CAT + "=?", new String[]{"1", category});
     }
 
     public long updateEntry(String rowId, String expense, String category) {
