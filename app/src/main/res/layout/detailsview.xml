@@ -81,7 +81,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="expense"
-            android:inputType="textPersonName" />
+            android:inputType="numberDecimal" />
 
         <EditText
             android:id="@+id/etDescription"
@@ -113,7 +113,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="change budget"
-            android:inputType="number" />
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/btnChange"

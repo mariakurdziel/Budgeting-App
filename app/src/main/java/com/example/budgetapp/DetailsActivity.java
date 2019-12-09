@@ -72,7 +72,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void btnAdd(View v) {
-        String expense = etExpense.getText().toString().trim();
+        double expense = Double.parseDouble(etExpense.getText().toString().trim());
         //String category = etCategory.getText().toString().trim();
         String savedExtra = getIntent().getStringExtra("value1");
         String category = savedExtra.trim();
@@ -81,7 +81,7 @@ public class DetailsActivity extends AppCompatActivity {
         try {
             ExpenseDB db = new ExpenseDB(this);
             db.open();
-            db.createEntry(expense, category, desc);
+            db.createEntry(expense, category, desc, false);
             db.close();
             Toast.makeText(DetailsActivity.this, "Successfully saved!", Toast.LENGTH_SHORT).show();
             etExpense.setText("");
@@ -97,13 +97,14 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     public void btnChange(View v) {
-        String expense = etChangeBudget.getText().toString().trim();
-        String category = "Budget";
+        double expense = Double.parseDouble(etChangeBudget.getText().toString().trim());
+        String savedExtra = getIntent().getStringExtra("value1");
+        String category = savedExtra.trim();
 
         try {
             ExpenseDB db = new ExpenseDB(this);
             db.open();
-            db.createEntry(expense, category, null);
+            db.updateBudget(category, expense);
             db.close();
             Toast.makeText(DetailsActivity.this, "Successfully saved!", Toast.LENGTH_SHORT).show();
             etChangeBudget.setText("");
