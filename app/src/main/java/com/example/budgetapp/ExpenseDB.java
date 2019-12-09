@@ -47,14 +47,14 @@ public class ExpenseDB {
                     ");";
 
             db.execSQL(query);
-            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, description, is_budget)" +
-                    "VALUES ('0', 'Food', 'null', 'true'); ");
-            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, description, is_budget)" +
-                    "VALUES ('0', 'Bills', 'null', 'true'); ");
-            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, description, is_budget)" +
-                    "VALUES ('0', 'Clothes', 'null', 'true'); ");
-            db.execSQL("INSERT INTO " + DATABASE_TABLE + " (expense, category, description, is_budget)" +
-                    "VALUES ('0', 'Others', 'null', 'true'); ");
+            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
+                    "VALUES ('0', 'Food', 'true'); ");
+            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
+                    "VALUES ('0', 'Bills', 'true'); ");
+            db.execSQL("INSERT INTO " + DATABASE_TABLE + "(expense, category, is_budget)" +
+                    "VALUES ('0', 'Clothes', 'true'); ");
+            db.execSQL("INSERT INTO " + DATABASE_TABLE + " (expense, category, is_budget)" +
+                    "VALUES ('0', 'Others', 'true'); ");
 
 
         }
