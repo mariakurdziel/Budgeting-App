@@ -107,9 +107,7 @@ public class ExpenseDB {
 
         Cursor c = ourDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
 
-        int iRowID = c.getColumnIndex(KEY_ROWID);
         int iExpense = c.getColumnIndex(KEY_EXPENSE);
-        int iCategory = c.getColumnIndex(KEY_CAT);
         int iDescription = c.getColumnIndex(KEY_DESC);
         int iIsBudget = c.getColumnIndex(KEY_IS_BUDGET);
         String item;
