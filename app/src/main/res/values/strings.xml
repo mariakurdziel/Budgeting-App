@@ -3,4 +3,10 @@
     <string name="budget">Budget:</string>
     <string name="money_left">Money left:</string>
     <string name="last_expenses">Last expenses:</string>
+    <string name="stats">Stats</string>
+    <string name="money_spent">Money spent</string>
+    <string name="money_saved">Money saved:</string>
+    <string name="you_spent_the_most_on">You spent the most on:</string>
+    <string name="you_saved_the_most_on">You saved the most on:</string>
+    <string name="money_spent2">Money spent:</string>
 </resources>
