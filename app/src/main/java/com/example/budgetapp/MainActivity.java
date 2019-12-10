@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent myIntent;
-                    if(mTitle[position].toString()==" Stats"){
+                    if(mTitle[position].toString()=="Stats"){
                         myIntent = new Intent(view.getContext(), StatsActivity.class);
                     }
                     else{
