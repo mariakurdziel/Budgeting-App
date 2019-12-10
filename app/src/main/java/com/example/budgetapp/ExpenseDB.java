@@ -98,7 +98,7 @@ public class ExpenseDB {
         Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);*/
 
         String table = "AllExpense";
-        String[] columns = new String[]{KEY_EXPENSE, KEY_CAT, KEY_DESC};
+        String[] columns = new String[]{KEY_EXPENSE, KEY_CAT, KEY_DESC,KEY_IS_BUDGET};
         String selection = "category=?";
         String[] selectionArgs = {cat};
         String groupBy = null;
@@ -117,7 +117,8 @@ public class ExpenseDB {
 
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-            result = result + c.getString(iExpense) + ": " + c.getString(iCategory) + ": " + c.getString(iDescription) + "\n";
+            if(c.getInt(iIsBudget)==0) {
+            result = result + c.getString(iExpense) + " " + c.getString(iCategory) + " " + c.getString(iDescription) + "\n";}
         }
         c.close();
         return result;
