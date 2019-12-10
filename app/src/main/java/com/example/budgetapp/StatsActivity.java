@@ -20,9 +20,6 @@ import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 
-import org.w3c.dom.Text;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 import static com.example.budgetapp.ExpenseDB.DATABASE_TABLE;
@@ -56,16 +53,10 @@ public class StatsActivity extends AppCompatActivity {
         pieChart.setDescription(desc);
         pieChart.getDescription().setEnabled(false);
         pieChart.setRotationEnabled(true);
-        //pieChart.setUsePercentValues(true);
-        //pieChart.setHoleColor(Color.BLUE);
-        //pieChart.setCenterTextColor(Color.BLACK);
         pieChart.setHoleRadius(35f);
         pieChart.setTransparentCircleAlpha(0);
         pieChart.setCenterText("Money spent");
         pieChart.setCenterTextSize(14);
-        //pieChart.setDrawEntryLabels(true);
-        //pieChart.setEntryLabelTextSize(20);
-        //More options just check out the documentation!
 
         addDataSet();
 
