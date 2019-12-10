@@ -112,7 +112,6 @@ public class DetailsActivity extends AppCompatActivity {
 
     public void btnAdd(View v) {
         double expense = Double.parseDouble(etExpense.getText().toString().trim());
-        //String category = etCategory.getText().toString().trim();
         String savedExtra = getIntent().getStringExtra("value1");
         String category = savedExtra.trim();
         String desc = etDescription.getText().toString().trim();
@@ -162,19 +161,6 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
     }
-
-
-    /*public void setBtnEdit(View v) {
-        try {
-
-            ExpenseDB db = new ExpenseDB(this);
-            db.open();
-            db.updateEntry()
-            db.close();
-
-        } catch (SQLException) {
-            Toast.makeText(DetailsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }*/
 }
 
 

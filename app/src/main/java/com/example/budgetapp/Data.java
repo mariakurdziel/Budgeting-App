@@ -11,12 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Data extends AppCompatActivity {
     //TextView tvData;
     ListView lvData;
-    ArrayList<String> listItem;
+    List<String> listItem;
     ArrayAdapter adapter;
 
     @Override
@@ -47,7 +48,7 @@ public class Data extends AppCompatActivity {
             ExpenseDB db = new ExpenseDB(this);
             db.open();
 
-            listItem.add(db.getData(savedExtra));
+            listItem = db.getData(savedExtra);
             adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, listItem);
             lvData.setAdapter(adapter);
             db.close();

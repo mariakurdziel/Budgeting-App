@@ -7,6 +7,9 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ExpenseDB {
 
     public static final String KEY_ROWID = "_id";
@@ -89,13 +92,9 @@ public class ExpenseDB {
         return ourDatabase.insert(DATABASE_TABLE, null, values);
     }
 
-    public String getData(String cat) {
-
-
-      /* String[] columns = new String[]{KEY_ROWID, KEY_EXPENSE, KEY_CAT, KEY_DESC, KEY_IS_BUDGET};
-
-
-        Cursor c = ourDatabase.query(DATABASE_TABLE, columns, null, null, null, null, null);*/
+    public List<String> getData(String cat) {
+        List <String> result = new ArrayList<>();
+        result.add("     COST          ITEM");
 
        String table = "AllExpense";
         String[] columns = new String[]{KEY_EXPENSE, KEY_CAT, KEY_DESC,KEY_IS_BUDGET};
@@ -107,18 +106,23 @@ public class ExpenseDB {
         String limit = null;
 
         Cursor c = ourDatabase.query(table, columns, selection, selectionArgs, groupBy, having, orderBy, limit);
-        String result = "";
 
         int iRowID = c.getColumnIndex(KEY_ROWID);
         int iExpense = c.getColumnIndex(KEY_EXPENSE);
         int iCategory = c.getColumnIndex(KEY_CAT);
         int iDescription = c.getColumnIndex(KEY_DESC);
         int iIsBudget = c.getColumnIndex(KEY_IS_BUDGET);
-
+        String item;
 
         for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
             if(c.getInt(iIsBudget)==0) {
-            result = result + c.getString(iExpense) + " " + c.getString(iDescription) + "\n";}
+                if(c.getString(iExpense).contains(".")) {
+                    item=c.getString(iExpense);
+                } else {
+                    item=c.getString(iExpense)+".0";
+                }
+            result.add("     "+item+ "             " + c.getString(iDescription));
+            }
         }
         c.close();
         return result;

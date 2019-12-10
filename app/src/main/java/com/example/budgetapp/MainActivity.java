@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
             TextView myTitle = row.findViewById(R.id.textView1);
             TextView myDescription = row.findViewById(R.id.textView2);
 
-            // now set our resources on views
             images.setImageResource(rImgs[position]);
             myTitle.setText(rTitle[position]);
             myDescription.setText(rDescription[position]);
