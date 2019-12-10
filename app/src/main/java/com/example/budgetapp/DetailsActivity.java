@@ -8,12 +8,14 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 
 import static com.example.budgetapp.ExpenseDB.DATABASE_TABLE;
 import static com.example.budgetapp.ExpenseDB.KEY_CAT;
@@ -30,6 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     Button btnAdd, btnChange, btnShow;
 
     TextView tvBudget, tvMoneyLeft;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,7 @@ public class DetailsActivity extends AppCompatActivity {
                 btnChange(v);
             }
         });
+
 
 
     }
@@ -135,7 +139,6 @@ public class DetailsActivity extends AppCompatActivity {
         String savedExtra = getIntent().getStringExtra("value1");
         myIntent.putExtra("value1",savedExtra);
         startActivity(myIntent);
-
 
     }
 
